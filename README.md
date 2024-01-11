@@ -9,7 +9,7 @@
 - **Mysql**
 -  **Docker**
 
-O App é um projeto onde será cadatrados filmes com as suas descrições e detalhes que você gostou. 
+O aplicativo é um projeto destinado ao cadastro de filmes, incluindo suas descrições e detalhes que você apreciou. 
   
 Movie:
 
