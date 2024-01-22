@@ -4,15 +4,16 @@ import com.movie.golden.domain.entity.Movie;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "MOVIE")
 public class MovieEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+    @Column(name = "NAME")
     private String name;
-    @Column
+    @Column(name = "DESCRIPTION")
     private String description;
-    @Column
+    @Column(name = "GENRE")
     private String genre;
 
     public static MovieEntity from(Movie movie) {

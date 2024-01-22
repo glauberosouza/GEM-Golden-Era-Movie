@@ -21,7 +21,7 @@ import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TE
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@Sql(executionPhase = BEFORE_TEST_METHOD, scripts = "classpath:/db/sql/reset.sql")
+@Sql(executionPhase = BEFORE_TEST_METHOD, scripts = "classpath:db.sql/reset.sql")
 public class BaseCompTest {
     @Autowired
     private DataSource dataSource;
@@ -29,7 +29,7 @@ public class BaseCompTest {
     @BeforeAll
     void initDB() {
         var dataBaseSeeder = new ResourceDatabasePopulator();
-        dataBaseSeeder.addScript(new ClassPathResource("db/sql/insert_into_movie.sql"));
+        dataBaseSeeder.addScript(new ClassPathResource("db.sql/insert_into_movie.sql"));
         dataBaseSeeder.execute(dataSource);
     }
 }

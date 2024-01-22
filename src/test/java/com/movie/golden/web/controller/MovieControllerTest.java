@@ -1,14 +1,15 @@
 package com.movie.golden.web.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movie.golden.BaseCompTest;
-import org.junit.jupiter.api.Assertions;
+import com.movie.golden.data.repository.movie.MovieRepositoryImpl;
+import com.movie.golden.templates.movieTemplate.MovieRequestTemplate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -19,17 +20,22 @@ class MovieControllerTest extends BaseCompTest {
     @Autowired
     private MockMvc mvc;
     @Autowired
-    private MovieService movieService;
+    private ObjectMapper objectMapper;
+    @Autowired
+    private MovieRepositoryImpl movieRepository;
 
     @Test
     @DisplayName("Deve cadastrar um filme com sucesso")
-    public void shouldSaveANewMovie(){
+    public void shouldSaveANewMovie() throws Exception {
         //GIVEN
-        var movie =
+        var movie = MovieRequestTemplate.creation();
+        var body = objectMapper.writeValueAsString(movie);
         //WHEN
-        mvc.perform(post().contentType(MediaType.APPLICATION_JSON).content(body)).andExpect(status());
+        mvc.perform(post("/v1/movies")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(body))
+                .andExpect(status().isCreated());
         //THEN
-        Assertions.assertEquals();
     }
 
     //TODO: Deve cadastrar um filme com sucesso
