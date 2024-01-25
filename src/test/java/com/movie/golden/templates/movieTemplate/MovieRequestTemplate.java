@@ -7,4 +7,10 @@ public class MovieRequestTemplate {
                "Filme de ficção sobre bruxos",
                "Fantasia");
     }
+    public static MovieRequest nullMovie(){
+        return new MovieRequest(
+                "",
+                "Filme de ficção sobre bruxos",
+                "");
+    }
 }

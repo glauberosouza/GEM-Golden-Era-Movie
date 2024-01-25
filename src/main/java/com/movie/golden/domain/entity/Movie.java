@@ -21,6 +21,13 @@ public class Movie {
         movie.setGenre(genre);
         return movie;
     }
+    public static Movie from(Long id, String name, String description, String genre) {
+        Movie movie = new Movie();
+        movie.setName(name);
+        movie.setDescription(description);
+        movie.setGenre(genre);
+        return movie;
+    }
 
     public Long getId() {
         return id;

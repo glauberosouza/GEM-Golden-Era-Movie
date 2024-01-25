@@ -17,6 +17,7 @@ public class RegistryMovie implements RegistryMovieBorder {
 
     @Override
     public void save(Movie movie) {
+
         movieRepository.save(movie);
     }
 }
