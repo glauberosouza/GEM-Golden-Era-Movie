@@ -1,7 +1,6 @@
 package com.movie.golden.web.response;
 
 import com.movie.golden.data.repository.movie.MovieEntity;
-import com.movie.golden.domain.entity.Movie;
 
 public record MovieResponse(Long id, String name, String description, String genre) {
 

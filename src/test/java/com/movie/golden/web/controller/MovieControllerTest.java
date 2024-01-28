@@ -2,20 +2,22 @@ package com.movie.golden.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movie.golden.BaseCompTest;
+import com.movie.golden.data.repository.movie.MoviePaginatedRepository;
 import com.movie.golden.data.repository.movie.MovieRepositoryImpl;
-import com.movie.golden.domain.entity.Movie;
 import com.movie.golden.templates.movieTemplate.MovieRequestTemplate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import java.util.NoSuchElementException;
 
+import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -32,6 +34,8 @@ class MovieControllerTest extends BaseCompTest {
     private ObjectMapper objectMapper;
     @Autowired
     private MovieRepositoryImpl movieRepository;
+    @Autowired
+    private MoviePaginatedRepository moviePaginatedRepository;
 
     @Test
     @DisplayName("Deve cadastrar um filme com sucesso")
@@ -72,7 +76,16 @@ class MovieControllerTest extends BaseCompTest {
         //THEN
     }
 
-    //TODO: Deve retornar uma mensagem amigavel caso não encontre o filme pelo id
+    @Test
+    @DisplayName("Deve retornar todos os filmes cadastrados páginados")
+    public void shouldReturnAllMovies() throws Exception {
+        //GIVEN
+        //WHEN
+        mvc.perform(get("/v1/movies/" + "/page/0")
+                .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk());
+        //THEN
+    }
     //TODO: Deve retornar todos os filmes cadastrados
     //TODO: Deve editar o filme escolhido pelo Id.
     //TODO: Deve deletar um filme pelo seu id.
