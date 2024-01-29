@@ -13,4 +13,10 @@ public class MovieRequestTemplate {
                 "Filme de ficção sobre bruxos",
                 "");
     }
+    public static MovieRequest update(MovieRequest movieRequest){
+        return new MovieRequest(
+                "Potter Harry",
+                "Filme de romance",
+                "Comédia");
+    }
 }

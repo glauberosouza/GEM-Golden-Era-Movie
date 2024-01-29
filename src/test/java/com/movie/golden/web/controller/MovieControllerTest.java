@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movie.golden.BaseCompTest;
 import com.movie.golden.data.repository.movie.MoviePaginatedRepository;
 import com.movie.golden.data.repository.movie.MovieRepositoryImpl;
+import com.movie.golden.templates.movieTemplate.MovieRequest;
 import com.movie.golden.templates.movieTemplate.MovieRequestTemplate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -17,8 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.NoSuchElementException;
 
 import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -86,8 +86,23 @@ class MovieControllerTest extends BaseCompTest {
         ).andExpect(status().isOk());
         //THEN
     }
-    //TODO: Deve retornar todos os filmes cadastrados
-    //TODO: Deve editar o filme escolhido pelo Id.
+    @Test
+    @DisplayName("Deve localizar um filme pelo id e atualiza-lo")
+    @Sql(INSERT_INTO_MOVIE)
+    public void shouldUpdateAMovie() throws Exception {
+        //GIVEN
+        var movie = MovieRequestTemplate.creation();
+        var movieUpdated = MovieRequestTemplate.update(movie);
+        var body = objectMapper.writeValueAsString(movie);
+        //WHEN
+        mvc.perform(put("/v1/movies/" + 1)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andExpect(status().is2xxSuccessful());
+        //THEN
+        Assertions.assertEquals("Potter Harry", movieUpdated.getName());
+    }
+
     //TODO: Deve deletar um filme pelo seu id.
 
 }
