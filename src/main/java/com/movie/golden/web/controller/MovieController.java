@@ -54,4 +54,10 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.OK).body(movieResponse);
 
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        movieRepository.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }

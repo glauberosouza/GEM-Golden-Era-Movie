@@ -10,4 +10,6 @@ public interface MovieRepository  {
     Movie findById(Long id);
 
     MovieResponse update(MovieRequest movieRequest, Long movieId);
+
+    void delete(Long id);
 }

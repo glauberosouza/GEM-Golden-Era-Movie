@@ -55,8 +55,17 @@ public class MovieRepositoryImpl implements MovieRepository {
         return MovieResponse.from(movieEntity);
     }
 
+    @Override
+    public void delete(Long id) {
+        if (movieDAO.findById(id).isEmpty()){
+            throw new NoSuchElementException("Não foi localizado um filme com o id: " + id + " informado");
+        }
+        movieDAO.deleteById(id);
+    }
+
     public Page<MovieEntity> findAll(PageRequest pageRequest) {
         return moviePaginatedRepository.findAll(pageRequest);
     }
+
 
 }
