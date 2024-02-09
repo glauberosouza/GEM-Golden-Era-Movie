@@ -20,7 +20,7 @@ public class MovieEntity {
         var movieEntity = new MovieEntity();
         movieEntity.id = movie.getId();
         movieEntity.name = movie.getName();
-        movieEntity.description = movieEntity.description;
+        movieEntity.description = movie.getDescription();
         movieEntity.genre = movie.getGenre();
         return movieEntity;
     }

@@ -10,6 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import java.util.NoSuchElementException;
+import java.util.Objects;
+import java.util.Optional;
 
 @Repository
 public class MovieRepositoryImpl implements MovieRepository {
@@ -24,8 +26,17 @@ public class MovieRepositoryImpl implements MovieRepository {
 
     @Override
     public void save(Movie movie) {
+        checkMovie(movie);
         var movieEntity = MovieEntity.from(movie);
         movieDAO.save(movieEntity);
+    }
+
+    private void checkMovie(Movie movie) {
+        if (Objects.isNull(movie.getName()) || movie.getName().isBlank() ||
+                Objects.isNull(movie.getDescription()) || movie.getDescription().isBlank() ||
+                Objects.isNull(movie.getGenre()) || movie.getGenre().isBlank()) {
+            throw new IllegalArgumentException("Um ou mais campos do filme estão em branco.");
+        }
     }
 
     @Override
@@ -57,7 +68,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
     @Override
     public void delete(Long id) {
-        if (movieDAO.findById(id).isEmpty()){
+        if (movieDAO.findById(id).isEmpty()) {
             throw new NoSuchElementException("Não foi localizado um filme com o id: " + id + " informado");
         }
         movieDAO.deleteById(id);
