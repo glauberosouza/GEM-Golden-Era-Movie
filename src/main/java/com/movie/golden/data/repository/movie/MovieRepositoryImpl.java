@@ -63,6 +63,7 @@ public class MovieRepositoryImpl implements MovieRepository {
         movieEntity.setName(movieRequest.name());
         movieEntity.setDescription(movieRequest.description());
         movieEntity.setGenre(movieRequest.genre());
+        movieDAO.save(movieEntity);
         return MovieResponse.from(movieEntity);
     }
 
