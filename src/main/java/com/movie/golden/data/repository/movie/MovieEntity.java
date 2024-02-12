@@ -13,15 +13,15 @@ public class MovieEntity {
     private String name;
     @Column(name = "DESCRIPTION")
     private String description;
-    @Column(name = "GENRE")
-    private String genre;
+    @Column(name = "GENDER")
+    private String gender;
 
     public static MovieEntity from(Movie movie) {
         var movieEntity = new MovieEntity();
         movieEntity.id = movie.getId();
         movieEntity.name = movie.getName();
         movieEntity.description = movie.getDescription();
-        movieEntity.genre = movie.getGenre();
+        movieEntity.gender = movie.getGender();
         return movieEntity;
     }
 
@@ -49,11 +49,11 @@ public class MovieEntity {
         this.description = description;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getGender() {
+        return gender;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

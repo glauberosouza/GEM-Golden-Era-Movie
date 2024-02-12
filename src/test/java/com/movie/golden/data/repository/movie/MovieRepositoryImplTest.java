@@ -36,7 +36,7 @@ class MovieRepositoryImplTest {
         var movie = Movie.from(
                 creation.getName(),
                 creation.getDescription(),
-                creation.getGenre());
+                creation.getGender());
         //WHEN
         movieRepository.save(movie);
         //THEN
@@ -51,7 +51,7 @@ class MovieRepositoryImplTest {
         var movie = Movie.from(
                 creation.getName(),
                 creation.getDescription(),
-                creation.getGenre());
+                creation.getGender());
         //WHEN
 
         //THEN
@@ -92,12 +92,12 @@ class MovieRepositoryImplTest {
                 new com.movie.golden.web.request.MovieRequest(
                         update.getName(),
                         update.getDescription(),
-                        update.getGenre());
+                        update.getGender());
 
         var movieEntity = new MovieEntity();
         movieEntity.setName(creation.getName());
         movieEntity.setDescription(creation.getDescription());
-        movieEntity.setGenre(creation.getGenre());
+        movieEntity.setGender(creation.getGender());
 
         // WHEN
         when(movieDAO.findById(anyLong())).thenReturn(Optional.of(movieEntity));

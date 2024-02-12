@@ -1,6 +1,5 @@
 package com.movie.golden.web.request;
 
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 
 public record MovieRequest(
@@ -9,5 +8,5 @@ public record MovieRequest(
         @NotBlank(message = "O campo não pode estar em branco.")
         String description,
         @NotBlank(message = "O campo não pode estar em branco.")
-        String genre) {
+        String gender) {
 }

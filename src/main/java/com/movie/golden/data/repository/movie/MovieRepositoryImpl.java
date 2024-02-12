@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
-import java.util.Optional;
 
 @Repository
 public class MovieRepositoryImpl implements MovieRepository {
@@ -34,7 +33,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     private void checkMovie(Movie movie) {
         if (Objects.isNull(movie.getName()) || movie.getName().isBlank() ||
                 Objects.isNull(movie.getDescription()) || movie.getDescription().isBlank() ||
-                Objects.isNull(movie.getGenre()) || movie.getGenre().isBlank()) {
+                Objects.isNull(movie.getGender()) || movie.getGender().isBlank()) {
             throw new IllegalArgumentException("Um ou mais campos do filme estão em branco.");
         }
     }
@@ -50,7 +49,7 @@ public class MovieRepositoryImpl implements MovieRepository {
                 movieEntity.getId(),
                 movieEntity.getName(),
                 movieEntity.getDescription(),
-                movieEntity.getGenre());
+                movieEntity.getGender());
     }
 
     @Override
@@ -62,7 +61,7 @@ public class MovieRepositoryImpl implements MovieRepository {
         var movieEntity = movieById.get();
         movieEntity.setName(movieRequest.name());
         movieEntity.setDescription(movieRequest.description());
-        movieEntity.setGenre(movieRequest.genre());
+        movieEntity.setGender(movieRequest.gender());
         movieDAO.save(movieEntity);
         return MovieResponse.from(movieEntity);
     }

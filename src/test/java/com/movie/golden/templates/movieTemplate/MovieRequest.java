@@ -3,15 +3,15 @@ package com.movie.golden.templates.movieTemplate;
 public class MovieRequest {
     private String name;
     private String description;
-    private String genre;
+    private String gender;
 
     public MovieRequest() {
     }
 
-    public MovieRequest(String name, String description, String genre) {
+    public MovieRequest(String name, String description, String gender) {
         this.name = name;
         this.description = description;
-        this.genre = genre;
+        this.gender = gender;
     }
 
 
@@ -31,11 +31,11 @@ public class MovieRequest {
         this.description = description;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getGender() {
+        return gender;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

@@ -26,8 +26,8 @@ public class MovieController {
 
     @PostMapping
     public ResponseEntity<MovieResponse> save(@RequestBody @Valid MovieRequest movieRequest) {
-        var movie = Movie.from(movieRequest.name(), movieRequest.description(), movieRequest.genre());
-        var movieResponse = MovieResponse.from(movie.getId(), movie.getName(), movie.getDescription(), movie.getGenre());
+        var movie = Movie.from(movieRequest.name(), movieRequest.description(), movieRequest.gender());
+        var movieResponse = MovieResponse.from(movie.getId(), movie.getName(), movie.getDescription(), movie.getGender());
         movieRepository.save(movie);
         return ResponseEntity.status(HttpStatus.CREATED).body(movieResponse);
     }
