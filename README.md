@@ -5,15 +5,13 @@
 - **Spring Boot 3**
 - **Spring Data JPA**
 - **Spring boot validation**
-- **OpenAPI (Swagger)**
 - **Mysql**
--  **Docker**
 
 O aplicativo é um projeto destinado ao cadastro de filmes, incluindo suas descrições e detalhes que você apreciou. 
   
 Movie:
 
-    Atributos: Id, Name, Description and genre.
+    Atributos: Id, Name, Description and gender.
     Funcionalidade: Realiza o cadastro de filmes que você gosta com detalhes que foram marcantes.
 
 ```mermaid
@@ -22,13 +20,13 @@ classDiagram
     - Id: long
     - Name: string
     - Description: string
-    - Genre: string
+    - Gender: string
   }
 ```
 ## Funcionalidades do Sistema
 
 - O sistema permite operações CRUD (Create, Read, Update e Delete) para interagir com os filmes.
-- Entidades sera persistida no Mysql.
+- Entidades sera persistida no Mysql ou no H2.
  
 ## Projeto em andamento sujeito a alterações.
 
